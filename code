@@ -1,0 +1,123 @@
+SELECT *
+FROM public.customers;
+
+
+---specific columns
+SELECT
+    first_name,
+    last_name,
+    email
+FROM
+    public.customers;
+
+
+----- USING WHERE 
+SELECT
+    product_name,
+    price,
+    stock_quantity
+FROM
+    public.products
+WHERE
+    price > 5000.00;
+
+
+------USING WHERE & AND
+
+SELECT
+    order_id,
+    customer_id,
+    total_amount,
+    status
+FROM
+    public.orders
+WHERE
+    status = 'Processing' AND total_amount > 10000.00;
+
+-----USING ON, OR, JOIN
+
+SELECT
+    p.product_name,
+    p.price,
+    c.category_name
+FROM
+    public.products p
+JOIN
+    public.categories c ON p.category_id = c.category_id
+WHERE
+    c.category_name = 'Electronics' OR c.category_name = 'Books';
+
+----- USING LIKE
+SELECT
+    product_name,
+    price
+FROM
+    public.products
+WHERE
+    product_name LIKE 'S%';
+
+
+----- USING IN
+SELECT
+    first_name,
+    last_name,
+    city,
+    state
+FROM
+    public.customers
+WHERE
+    city IN ('Delhi', 'Chennai', 'Kolkata');
+
+
+---USING NULL
+
+SELECT
+    first_name,
+    last_name,
+    email
+FROM
+    public.customers
+WHERE
+    phone IS NULL;
+
+-----SORTING RESULTS (ORDER BY)
+
+SELECT
+    product_name,
+    price
+FROM
+    public.products
+ORDER BY
+    price ASC;
+
+----USING DESC 
+SELECT
+    product_name,
+    stock_quantity
+FROM
+    public.products
+ORDER BY
+    stock_quantity DESC;
+
+
+---- USING BOTH ASC, DESC
+
+SELECT
+    order_id,
+    customer_id,
+    order_date,
+    total_amount
+FROM
+    public.orders
+ORDER BY
+    customer_id ASC, order_date DESC;
+
+----USING LIMIT
+SELECT
+    product_name,
+    price
+FROM
+    public.products
+ORDER BY
+    price DESC
+LIMIT 5;
